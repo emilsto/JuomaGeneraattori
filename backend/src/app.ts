@@ -1,7 +1,7 @@
 import express from 'express';
-import cors from 'cors';
 import { createServer } from 'http'
 import { Server } from "socket.io";
+import socket from './socket';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -11,19 +11,13 @@ const app = express();
 
 const httpServer = createServer(app);
 
-
 const io = new Server(httpServer, {
+  //set cookie
+  cookie: true,
   cors: {
     origin: '*',
     credentials: true,
   },
-});
-
-io.on('connection', (socket) => {
-  console.log(`⚡: ${socket.id} user just connected!`);
-  socket.on('disconnect', () => {
-    console.log('🔥: A user disconnected');
-  });
 });
 
 app.get('/', (req, res) => {
@@ -31,8 +25,9 @@ app.get('/', (req, res) => {
 });
 
 
-httpServer.listen(4000, () => {
-  console.log('listening on *:4000');
+httpServer.listen(1337, () => {
+  console.log('listening on *:1337');
+  socket(io);
 });
 
 

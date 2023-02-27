@@ -1,0 +1,20 @@
+.team--blue {
+  background-color: #4f7798;
+  color: #4f7798;
+  text-align: center;
+}
+
+.team--red {
+  background-color: #c94f4f;
+  color: #c94f4f;
+  text-align: center;
+}
+
+.team {
+  height: 100vh;
+  display: flex;
+  font-size: 2rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
